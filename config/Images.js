@@ -1,0 +1,18 @@
+export default {
+  HelpCS: require('../assets/images/HelpCS.png'),
+  HelpWA: require('../assets/images/HelpWA.png'),
+  HelpWeb: require('../assets/images/HelpWeb.png'),
+  HelpFB: require('../assets/images/HelpFB.png'),
+  HelpTwtr: require('../assets/images/HelpTwtr.png'),
+  HelpIG: require('../assets/images/HelpIG.png'),
+  Utility: require('../assets/images/Utility.png'),
+  Utility1: require('../assets/images/Utility1.png'),
+  Images: require('../assets/images/Images.jpg'),
+  Login: require('../assets/images/Login.jpg'),
+  Uploadimage: require('../assets/images/Uploadimage.png'),
+  BigLogo: require('../assets/images/BigLogo.png'),
+  ObFB: require('../assets/images/ObFB.png'),
+  ObGoogle: require('../assets/images/ObGoogle.png'),
+  ObApple: require('../assets/images/ObApple.png'),
+  Download: require('../assets/images/Download.jpg'),
+};
