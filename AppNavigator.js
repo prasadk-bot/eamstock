@@ -9,13 +9,18 @@ import theme from './themes/DraftbitTheme.js';
 import LinkingConfiguration from './LinkingConfiguration.js';
 
 import HomeScreen from './screens/HomeScreen';
+import HomeScreen3 from './screens/HomeScreen3';
 import HomeScreenCopy from './screens/HomeScreenCopy';
+import HomeScreenCopyCopy from './screens/HomeScreenCopyCopy';
 import HomeScreen_cVoyTkCe from './screens/HomeScreen_cVoyTkCe';
 import LoginScreen from './screens/LoginScreen';
+import LoginScreen3 from './screens/LoginScreen3';
 import LogincopyScreen from './screens/LogincopyScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import StockPage1CopyScreen from './screens/StockPage1CopyScreen';
 import StockPage1Screen from './screens/StockPage1Screen';
+import StockPage2Screen from './screens/StockPage2Screen';
+import StockPage3Screen from './screens/StockPage3Screen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -75,7 +80,7 @@ export default function RootAppNavigator() {
     <NavigationContainer linking={LinkingConfiguration}>
       <Stack.Navigator
         headerMode="none"
-        initialRouteName="LogincopyScreen"
+        initialRouteName="LoginScreen3"
         screenOptions={{
           cardStyle: {
             backgroundColor: theme.colors['Custom #5f5a53'],
@@ -138,6 +143,41 @@ export default function RootAppNavigator() {
           component={HomeScreenCopy}
           options={{
             title: 'Home Screen Copy',
+          }}
+        />
+        <Stack.Screen
+          name="StockPage2Screen"
+          component={StockPage2Screen}
+          options={{
+            title: 'Stock Page 2',
+          }}
+        />
+        <Stack.Screen
+          name="HomeScreenCopyCopy"
+          component={HomeScreenCopyCopy}
+          options={{
+            title: 'Home Screen Copy Copy',
+          }}
+        />
+        <Stack.Screen
+          name="HomeScreen3"
+          component={HomeScreen3}
+          options={{
+            title: 'Home Screen3',
+          }}
+        />
+        <Stack.Screen
+          name="LoginScreen3"
+          component={LoginScreen3}
+          options={{
+            title: 'Login Screen3',
+          }}
+        />
+        <Stack.Screen
+          name="StockPage3Screen"
+          component={StockPage3Screen}
+          options={{
+            title: 'Stock Page 3',
           }}
         />
       </Stack.Navigator>

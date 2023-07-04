@@ -3,15 +3,18 @@ import { View, ActivityIndicator } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const DeviceVariables = { schedule_no: '', user_name: 'some user_name' };
+const DeviceVariables = { schedule_no: '' };
 const AppVariables = {
+  ACT_QTY: '',
   AUTH_TOKEN: '',
   ERROR_MESSAGE: '',
   IMAGE: 'https://dummyimage.com/600x400/000/fff',
   binlist: ['bin1:bin1', 'bin2:bin2'],
   binpicker: '',
   data: ['Rw_1:Ba_1:Le_1-Rw_1:Ba_1:Le_1', 'sai11154-sai111542'],
+  stockScheduleDataJson: '',
   stockscheduledata: [{ '': '' }],
+  user_name: 'some user_name',
   userpic: 'some user pic',
   userpic1: 'some user pic1',
   userpic2: 'some user pic2',

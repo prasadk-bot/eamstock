@@ -13,6 +13,7 @@ import {
   Picker,
   ScreenContainer,
   Stepper,
+  TextInput,
   Touchable,
   withTheme,
 } from '@draftbit/ui';
@@ -21,7 +22,6 @@ import {
   Image,
   ScrollView,
   Text,
-  TextInput,
   View,
   useWindowDimensions,
 } from 'react-native';
@@ -332,7 +332,13 @@ const StockPage1Screen = props => {
                 onValueChange={newPickerValue => {
                   const pickerValue = newPickerValue;
                   try {
-                    setPickerValue3(newPickerValue);
+                    setPickerValue3(
+                      (() => {
+                        const e = newPickerValue;
+                        console.log(e);
+                        return e;
+                      })()
+                    );
                   } catch (err) {
                     console.error(err);
                   }

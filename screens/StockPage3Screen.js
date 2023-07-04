@@ -28,16 +28,88 @@ import {
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-const StockPage1CopyScreen = props => {
+const StockPage3Screen = props => {
   const dimensions = useWindowDimensions();
   const Constants = GlobalVariables.useValues();
   const Variables = Constants;
   const setGlobalVariableValue = GlobalVariables.useSetValue();
 
+  const myFunctionName = (binList, binLocation) => {
+    console.log('binlist' + binLocation);
+    //console.log("binlist"+binList.length)
+    for (let i = 0; i <= binList.length; i++) {
+      console.log(binList[i].binLocation);
+      if (binList[i].binLocation == binLocation) {
+        console.log('binquantity' + binList[i].quantity);
+        console.log('type' + binList[i].type);
+        console.log('actualqty' + binList[i].actualQuantity);
+        setCrtQty(binList[i].quantity);
+        setMtype(binList[i].type);
+        //setactualQty(binList[i].actualQuantity);
+        setActualQuantity(binList[i].actualQuantity);
+        setQtyDisprncy(binList[i].discrepancyQuantity);
+        setRemarks(binList[i].remarks);
+      }
+
+      //setActQty(binList[i].actualQuantity);
+    }
+
+    //console.log("type"+binList[0].type)
+    //console.log("actqty"+binList[0].actualQuantity)
+    //setCrtQty(binList[0].quantity);
+    //setMtype(binList[0].type);
+    //setactualQuantity(binList[0].actualQuantity);
+    //return binList.map((Location) => {
+    //console.log("binquantity"+Location.quantity)
+    //});
+    return binList[i].binLocation;
+
+    //setQtyDisprncy(binList[0].quantity)
+
+    // Type the code for the body of your function or hook here.
+    // Functions can be triggered via Button/Touchable actions.
+    // Hooks are run per ReactJS rules.
+
+    /* String line breaks are accomplished with backticks ( example: `line one
+line two` ) and will not work with special characters inside of quotes ( example: "line one line two" ) */
+  };
+
   const transformToPickerOptions = StockBinLocation => {
     return StockBinLocation.map(Location => {
       return { label: Location.binLocation, value: Location.binLocation };
     });
+  };
+
+  const subtractionfun = (CrtQty, ActQty) => {
+    // Type the code for the body of your function or hook here.
+    // Functions can be triggered via Button/Touchable actions.
+    // Hooks are run per ReactJS rules.
+
+    /* String line breaks are accomplished with backticks ( example: `line one
+line two` ) and will not work with special characters inside of quotes ( example: "line one line two" ) */
+    console.log('crtqty' + CrtQty);
+    console.log('actqty' + ActQty);
+    //const valid = false;
+    // console.log("totalqty" + CrtQty - ActQty)
+    // setQtyDisprncy(CrtQty - ActQty)
+    //if(ActQty<=CrtQty){
+    if (ActQty <= CrtQty) {
+      //console.log("actqty" + ActQty)
+      setQtyDisprncy(CrtQty - ActQty);
+    } else {
+      setQtyDisprncy(CrtQty);
+    }
+
+    //valid=true;
+    //}
+    //if(valid){
+    // return 'true'
+    //}
+    //else{
+    // return 'false';
+    // }
+
+    return CrtQty - ActQty;
   };
 
   const CovertImageToBase64 = async img => {
@@ -64,61 +136,6 @@ line two` ) and will not work with special characters inside of quotes ( example
     return img;
   };
 
-  const fetchingBinLocation = binLocation => {
-    // Type the code for the body of your function or hook here.
-    // Functions can be triggered via Button/Touchable actions.
-    // Hooks are run per ReactJS rules.
-
-    /* String line breaks are accomplished with backticks ( example: `line one
-line two` ) and will not work with special characters inside of quotes ( example: "line one line two" ) */
-    console.log('binLocation' + binLocation);
-    //setbinLocation(binLocation);
-    //console.log("CrtQty"+CrtQty);
-    //setCrtQty(CrtQty);
-    //setActQty(ActyQty);
-    //SetQtyDisprncy(QtyDisprncy);
-    return binLocation;
-  };
-
-  const myFunctionName = binList => {
-    console.log('binquantity' + binList[0].quantity);
-    console.log('type' + binList[0].type);
-    setCrtQty(binList[0].quantity);
-    setMtype(binList[0].type);
-    //setActQty(binList[0].actualQuantity);
-
-    //setQtyDisprncy(binList[0].quantity)
-    return binList[0].binLocation;
-
-    //binList.forEach(function(message){
-    // console.log("location"+message)
-    //});
-
-    // Type the code for the body of your function or hook here.
-    // Functions can be triggered via Button/Touchable actions.
-    // Hooks are run per ReactJS rules.
-
-    /* String line breaks are accomplished with backticks ( example: `line one
-line two` ) and will not work with special characters inside of quotes ( example: "line one line two" ) */
-  };
-
-  const subtractionfun = (CrtQty, ActQty) => {
-    // Type the code for the body of your function or hook here.
-    // Functions can be triggered via Button/Touchable actions.
-    // Hooks are run per ReactJS rules.
-
-    /* String line breaks are accomplished with backticks ( example: `line one
-line two` ) and will not work with special characters inside of quotes ( example: "line one line two" ) */
-    console.log('crtqty' + CrtQty);
-    console.log('actqty' + ActQty);
-    // console.log("totalqty" + CrtQty - ActQty)
-    // setQtyDisprncy(CrtQty - ActQty)
-
-    setQtyDisprncy(CrtQty - ActQty);
-
-    return CrtQty - ActQty;
-  };
-
   const { theme } = props;
   const { navigation } = props;
 
@@ -126,14 +143,15 @@ line two` ) and will not work with special characters inside of quotes ( example
     PostStockTakingDetailsApi.usePostStockDetailsServicePOST();
 
   const [ActQty, setActQty] = React.useState('');
+  const [ActualQuantity, setActualQuantity] = React.useState('');
   const [CrtQty, setCrtQty] = React.useState('');
   const [Mtype, setMtype] = React.useState('');
   const [QtyDisprncy, setQtyDisprncy] = React.useState('');
+  const [Remarks, setRemarks] = React.useState('');
   const [SCHEDULENO, setSCHEDULENO] = React.useState('');
   const [Showminus, setShowminus] = React.useState(false);
   const [Showminus1, setShowminus1] = React.useState(false);
   const [Showminus2, setShowminus2] = React.useState(false);
-  const [actualQty, setActualQty] = React.useState('');
   const [binLocation, setBinLocation] = React.useState('');
   const [completed, setCompleted] = React.useState(false);
   const [inProgress, setInProgress] = React.useState(false);
@@ -142,7 +160,6 @@ line two` ) and will not work with special characters inside of quotes ( example
   const [pickerValue, setPickerValue] = React.useState('');
   const [pickerValue2, setPickerValue2] = React.useState('');
   const [pickerValue3, setPickerValue3] = React.useState('');
-  const [remarks, setRemarks] = React.useState('');
   const [stepper2Value, setStepper2Value] = React.useState('');
   const [stepperValue, setStepperValue] = React.useState('');
   const [textAreaValue, setTextAreaValue] = React.useState('');
@@ -416,7 +433,12 @@ line two` ) and will not work with special characters inside of quotes ( example
                 onValueChange={newPickerValue => {
                   try {
                     const binData = myFunctionName(
-                      Constants['stockscheduledata']
+                      Constants['stockscheduledata'],
+                      (() => {
+                        const e = newPickerValue;
+                        console.log(e);
+                        return e;
+                      })()
                     );
                     setBinLocation(newPickerValue);
                   } catch (err) {
@@ -581,10 +603,9 @@ line two` ) and will not work with special characters inside of quotes ( example
                 {/* Actual qty */}
                 <TextInput
                   onChangeText={newActualQtyValue => {
-                    const textInputValue = newActualQtyValue;
                     try {
-                      setActualQty(newActualQtyValue);
                       const qtydisp = subtractionfun(CrtQty, newActualQtyValue);
+                      setActualQuantity(newActualQtyValue);
                     } catch (err) {
                       console.error(err);
                     }
@@ -596,7 +617,7 @@ line two` ) and will not work with special characters inside of quotes ( example
                     ),
                     dimensions.width
                   )}
-                  value={actualQty}
+                  value={ActualQuantity}
                   placeholder={'Enter actual qty'}
                   autoCapitalize={'none'}
                   placeholderTextColor={theme.colors['TextPlaceholder']}
@@ -689,7 +710,9 @@ line two` ) and will not work with special characters inside of quotes ( example
                 onChangeText={newTextAreaValue => {
                   const textInputValue = newTextAreaValue;
                   try {
-                    setRemarks(newTextAreaValue);
+                    if ((props.route?.params?.buttonType ?? '') !== undefined) {
+                      setRemarks(newTextAreaValue);
+                    }
                   } catch (err) {
                     console.error(err);
                   }
@@ -707,8 +730,8 @@ line two` ) and will not work with special characters inside of quotes ( example
                   ),
                   dimensions.width
                 )}
+                value={Remarks}
                 placeholder={'Remarks'}
-                value={remarks}
                 textAlignVertical={'top'}
                 multiline={true}
                 numberOfLines={4}
@@ -1128,7 +1151,7 @@ line two` ) and will not work with special characters inside of quotes ( example
                           await postStockTakingDetailsPostStockDetailsServicePOST.mutateAsync(
                             {
                               actualQuantity: (() => {
-                                const e = actualQty;
+                                const e = ActualQuantity;
                                 console.log(e);
                                 return e;
                               })(),
@@ -1142,90 +1165,18 @@ line two` ) and will not work with special characters inside of quotes ( example
                                 console.log(e);
                                 return e;
                               })(),
-                              dispQuantity: QtyDisprncy,
-                              quantity: 100,
-                              remarks: (() => {
-                                const e = remarks;
-                                console.log(e);
-                                return e;
-                              })(),
-                              scheduleNo: props.route?.params?.scheduleno ?? '',
-                              uploadImage1: (() => {
-                                const e = Constants['userpic'];
-                                console.log(e);
-                                return e;
-                              })(),
-                              uploadImage2: (() => {
-                                const e = Constants['userpic1'];
-                                console.log(e);
-                                return e;
-                              })(),
-                              uploadImage3: (() => {
-                                const e = Constants['userpic2'];
-                                console.log(e);
-                                return e;
-                              })(),
-                              username: 'inspox@gmail.com',
-                            }
-                          );
-                          navigation.navigate('HomeScreenCopy');
-                        } catch (err) {
-                          console.error(err);
-                        }
-                      };
-                      handler();
-                    }}
-                    style={StyleSheet.applyWidth(
-                      StyleSheet.compose(
-                        GlobalStyles.ButtonStyles(theme)['Button'],
-                        {
-                          color: theme.colors['Custom Color_3'],
-                          fontFamily: 'Roboto_700Bold',
-                          lineHeight: 20,
-                        }
-                      ),
-                      dimensions.width
-                    )}
-                    title={'Save'}
-                  />
-                )}
-              </>
-            </View>
-            {/* View 2 */}
-            <View
-              style={StyleSheet.applyWidth({ width: 100 }, dimensions.width)}
-            >
-              {/* Submit */}
-              <>
-                {props.route?.params?.buttonType ?? '' ? null : (
-                  <Button
-                    onPress={() => {
-                      const handler = async () => {
-                        try {
-                          await postStockTakingDetailsPostStockDetailsServicePOST.mutateAsync(
-                            {
-                              actualQuantity: (() => {
-                                const e = actualQty;
-                                console.log(e);
-                                return e;
-                              })(),
-                              binLocation: (() => {
-                                const e = binLocation;
-                                console.log(e);
-                                return e;
-                              })(),
-                              buttonType: (() => {
-                                const e = 'SUBMIT';
-                                console.log(e);
-                                return e;
-                              })(),
                               dispQuantity: (() => {
                                 const e = QtyDisprncy;
                                 console.log(e);
                                 return e;
                               })(),
+                              quantity: (() => {
+                                const e = CrtQty;
+                                console.log(e);
+                                return e;
+                              })(),
                               remarks: (() => {
-                                const e = remarks;
+                                const e = Remarks;
                                 console.log(e);
                                 return e;
                               })(),
@@ -1251,7 +1202,100 @@ line two` ) and will not work with special characters inside of quotes ( example
                               })(),
                             }
                           );
-                          navigation.navigate('HomeScreenCopy');
+                          navigation.navigate('HomeScreenCopyCopy');
+                        } catch (err) {
+                          console.error(err);
+                        }
+                      };
+                      handler();
+                    }}
+                    style={StyleSheet.applyWidth(
+                      StyleSheet.compose(
+                        GlobalStyles.ButtonStyles(theme)['Button'],
+                        {
+                          color: theme.colors['Custom Color_3'],
+                          fontFamily: 'Roboto_700Bold',
+                          lineHeight: 20,
+                        }
+                      ),
+                      dimensions.width
+                    )}
+                    title={'Save'}
+                  />
+                )}
+              </>
+            </View>
+            {/* view2 */}
+            <View
+              style={StyleSheet.applyWidth(
+                StyleSheet.compose(GlobalStyles.ViewStyles(theme)['view8'], {
+                  width: 100,
+                }),
+                dimensions.width
+              )}
+            >
+              {/* Submit */}
+              <>
+                {props.route?.params?.buttonType ?? '' ? null : (
+                  <Button
+                    onPress={() => {
+                      const handler = async () => {
+                        try {
+                          await postStockTakingDetailsPostStockDetailsServicePOST.mutateAsync(
+                            {
+                              actualQuantity: (() => {
+                                const e = ActualQuantity;
+                                console.log(e);
+                                return e;
+                              })(),
+                              binLocation: (() => {
+                                const e = binLocation;
+                                console.log(e);
+                                return e;
+                              })(),
+                              buttonType: (() => {
+                                const e = 'SUBMIT';
+                                console.log(e);
+                                return e;
+                              })(),
+                              dispQuantity: (() => {
+                                const e = QtyDisprncy;
+                                console.log(e);
+                                return e;
+                              })(),
+                              quantity: (() => {
+                                const e = CrtQty;
+                                console.log(e);
+                                return e;
+                              })(),
+                              remarks: (() => {
+                                const e = Remarks;
+                                console.log(e);
+                                return e;
+                              })(),
+                              scheduleNo: (() => {
+                                const e = props.route?.params?.scheduleno ?? '';
+                                console.log(e);
+                                return e;
+                              })(),
+                              uploadImage1: (() => {
+                                const e = Constants['userpic'];
+                                console.log(e);
+                                return e;
+                              })(),
+                              uploadImage2: (() => {
+                                const e = Constants['userpic1'];
+                                console.log(e);
+                                return e;
+                              })(),
+                              uploadImage3: (() => {
+                                const e = Constants['userpic2'];
+                                console.log(e);
+                                return e;
+                              })(),
+                            }
+                          );
+                          navigation.navigate('HomeScreenCopyCopy');
                         } catch (err) {
                           console.error(err);
                         }
@@ -1275,13 +1319,10 @@ line two` ) and will not work with special characters inside of quotes ( example
               </>
             </View>
           </View>
-          {/* Button */}
+          {/* button */}
           <View
             style={StyleSheet.applyWidth(
-              StyleSheet.compose(
-                GlobalStyles.ViewStyles(theme)['Button view'],
-                { alignItems: 'center', flexDirection: 'column' }
-              ),
+              GlobalStyles.ViewStyles(theme)['Button view'],
               dimensions.width
             )}
           >
@@ -1291,7 +1332,7 @@ line two` ) and will not work with special characters inside of quotes ( example
               {/* Close */}
               <>
                 {!(
-                  (props.route?.params?.buttonType ?? '') === 'SUBMIT'
+                  (props.route?.params?.buttonType ?? '') === undefined
                 ) ? null : (
                   <Button
                     onPress={() => {
@@ -1322,7 +1363,7 @@ line two` ) and will not work with special characters inside of quotes ( example
                               })(),
                             }
                           );
-                          navigation.navigate('HomeScreenCopy');
+                          navigation.navigate('HomeScreenCopyCopy');
                         } catch (err) {
                           console.error(err);
                         }
@@ -1353,4 +1394,4 @@ line two` ) and will not work with special characters inside of quotes ( example
   );
 };
 
-export default withTheme(StockPage1CopyScreen);
+export default withTheme(StockPage3Screen);

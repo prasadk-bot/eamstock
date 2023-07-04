@@ -15,7 +15,7 @@ import {
 } from '@draftbit/ui';
 import { Image, Text, View, useWindowDimensions } from 'react-native';
 
-const LogincopyScreen = props => {
+const LoginScreen3 = props => {
   const dimensions = useWindowDimensions();
   const Constants = GlobalVariables.useValues();
   const Variables = Constants;
@@ -347,7 +347,7 @@ const LogincopyScreen = props => {
                   key: 'AUTH_TOKEN',
                   value: signinAuthToken,
                 });
-                navigation.navigate('HomeScreenCopyCopy', {
+                navigation.navigate('HomeScreen3', {
                   userName: (() => {
                     const e = usernameValue;
                     console.log(e);
@@ -380,4 +380,4 @@ const LogincopyScreen = props => {
   );
 };
 
-export default withTheme(LogincopyScreen);
+export default withTheme(LoginScreen3);

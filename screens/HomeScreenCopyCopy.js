@@ -26,7 +26,7 @@ import {
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Fetch } from 'react-request';
 
-const HomeScreenCopy = props => {
+const HomeScreenCopyCopy = props => {
   const dimensions = useWindowDimensions();
   const Constants = GlobalVariables.useValues();
   const Variables = Constants;
@@ -501,7 +501,31 @@ const HomeScreenCopy = props => {
                 >
                   <StockTakingDetailsApi.FetchGetStockTakingDetailsPOST
                     refetchInterval={'3000ms'}
-                    userName={'inspox@gmail.com'}
+                    userName={(() => {
+                      const e = props.route?.params?.userName ?? '';
+                      console.log(e);
+                      return e;
+                    })()}
+                    onData={fetchData => {
+                      const handler = async () => {
+                        try {
+                          const stockTakingDetailsJSON =
+                            await StockTakingDetailsApi.getStockTakingDetailsPOST(
+                              Constants,
+                              {
+                                userName: (() => {
+                                  const e = props.route?.params?.userName ?? '';
+                                  console.log(e);
+                                  return e;
+                                })(),
+                              }
+                            );
+                        } catch (err) {
+                          console.error(err);
+                        }
+                      };
+                      handler();
+                    }}
                   >
                     {({
                       loading,
@@ -784,7 +808,7 @@ const HomeScreenCopy = props => {
                                                                   }
                                                                 );
                                                               navigation.navigate(
-                                                                'StockPage1CopyScreen',
+                                                                'StockPage2Screen',
                                                                 {
                                                                   schedule:
                                                                     flashListData?.verifyDate,
@@ -875,7 +899,7 @@ ${flashListData?.materialName}
                             );
                           }}
                           data={fetchData?.message?.data}
-                          listKey={'DWPcO0oO'}
+                          listKey={'WJf5cvZA'}
                           keyExtractor={listData =>
                             listData?.id ||
                             listData?.uuid ||
@@ -1259,7 +1283,7 @@ ${flashListData?.materialName}
                                                             }
                                                           );
                                                         navigation.navigate(
-                                                          'StockPage1CopyScreen',
+                                                          'StockPage2Screen',
                                                           {
                                                             schedule:
                                                               flashListData?.verifyDate,
@@ -1283,7 +1307,7 @@ ${flashListData?.materialName}
                                                               flashList2Data?.remarks,
                                                             buttonType:
                                                               flashList2Data?.buttonType,
-                                                            actualQuantity:
+                                                            actualQty:
                                                               flashList2Data?.actualQuantity,
                                                           }
                                                         );
@@ -1360,7 +1384,7 @@ ${flashListData?.materialName}
                       );
                     }}
                     data={fetchData?.message?.data}
-                    listKey={'IkhIO2Ch'}
+                    listKey={'GJGygR7w'}
                     keyExtractor={listData =>
                       listData?.id || listData?.uuid || JSON.stringify(listData)
                     }
@@ -1379,4 +1403,4 @@ ${flashListData?.materialName}
   );
 };
 
-export default withTheme(HomeScreenCopy);
+export default withTheme(HomeScreenCopyCopy);

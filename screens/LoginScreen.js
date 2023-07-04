@@ -5,14 +5,14 @@ import * as GlobalVariables from '../config/GlobalVariableContext';
 import Images from '../config/Images';
 import Breakpoints from '../utils/Breakpoints';
 import * as StyleSheet from '../utils/StyleSheet';
-import { Button, Icon, ScreenContainer, withTheme } from '@draftbit/ui';
 import {
-  Image,
-  Text,
+  Button,
+  Icon,
+  ScreenContainer,
   TextInput,
-  View,
-  useWindowDimensions,
-} from 'react-native';
+  withTheme,
+} from '@draftbit/ui';
+import { Image, Text, View, useWindowDimensions } from 'react-native';
 
 const LoginScreen = props => {
   const dimensions = useWindowDimensions();
@@ -113,8 +113,8 @@ const LoginScreen = props => {
                 },
                 dimensions.width
               )}
-              placeholder={'Username'}
               value={usernameValue}
+              placeholder={'Username'}
               editable={true}
               placeholderTextColor={theme.colors['Custom Color_20']}
               enablesReturnKeyAutomatically={false}
@@ -177,8 +177,8 @@ const LoginScreen = props => {
                 },
                 dimensions.width
               )}
-              placeholder={'Password'}
               value={passwordValue}
+              placeholder={'Password'}
               editable={true}
               placeholderTextColor={theme.colors['Custom Color_20']}
               secureTextEntry={true}
